@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en_US">
+  <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title></title>
+  </head>
+  <body>
+        <script>
+            one.include('Ext:../resources/css/ext-all.css');
+            one.include('extsdk:Foundation');
+            one.include('extsdk:Extras');
+            one.include('extsdk:DOM');
+        </script>
+        <script>
+            Ext.Loader.setConfig({
+                enabled: false,
+                paths: {
+                    Ext: '3rdparty/ExtJS/src'
+                }
+            });
+
+            one.include('locale:en_US.js');
+            one.locale = one.localelib.en_US;
+
+            one.include('jslib:one/Viewport-declareIconsSprite.css');
+
+            Ext.BLANK_IMAGE_URL = one.getStaticUrl('3rdparty/common-frontend/images/icons/blank_1x1.gif');
+      </script>
+      
+      <!--<script src="js/YourApp/app.js"></script>-->
+    </body>
+</html>

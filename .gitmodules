@@ -1,0 +1,3 @@
+[submodule "http-pub/3rdparty/ExtJS"]
+	path = http-pub/3rdparty/ExtJS
+	url = https://github.com/One-com/Ext-JS-4.git

@@ -1,0 +1,9 @@
+# Generated files
+/http-pub-production
+/http-pub-cdn
+/http-pub/index.html
+/http-pub/test/*/index.html
+/doc
+
+# Node modules
+/node_modules
