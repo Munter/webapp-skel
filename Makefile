@@ -3,7 +3,7 @@
 # Ugly 'subst' hack: Check the Make Manual section 8.1 - Function Call Syntax
 NPM_BINS:=$(subst bin node,bin:node,$(shell find node_modules/ -name bin -type d))
 ifneq ($(NPM_BINS),)
-        PATH:=${NPM_BINS}:${PATH}
+	PATH:=${NPM_BINS}:${PATH}
 endif
 
 PAGES = http-pub/index.html
@@ -11,7 +11,7 @@ CDN_ROOT = http://cdn.mydomain.com/static/
 TARGET_LOCALES=en_US
 LABELS = \
 	--label Ext:extJs4Dir=http-pub/3rdparty/ExtJS/src \
-	--label extsdk=http-pub/3rdparty/ext/build/sdk.jsb3
+	--label extsdk=http-pub/3rdparty/ExtJS/build/sdk.jsb3
 
 .PHONY: development clean
 development: ${PAGES}
@@ -33,17 +33,15 @@ http-pub-production: ${PAGES}
 		--outroot $@ \
 		--locale ${TARGET_LOCALES} \
 		${LABELS} \
-		$<
-	touch $@
+		${PAGES}
 
 http-pub-cdn: http-pub-production
-        -rm -fr $@
-        prepareForCDN \
-                --root $< \
-                --outroot $@ \
-                --cdnroot ${CDN_ROOT} \
-                $@/*.html
-	touch $@
+	-rm -fr $@
+	prepareForCDN \
+		--root $< \
+		--outroot $@ \
+		--cdnroot ${CDN_ROOT} \
+		$</*.html
 
 clean:
 	-rm -f http-pub/index.html
