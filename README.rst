@@ -7,7 +7,9 @@ Installation
 ============
 
 Run `bootstrap.sh <webapp-skel/bootstrap.sh>`_ to install all dependencies.
-This will do a git checkout of nodejs in your home directory and built it, install npm, install required debian packages and install `assetgraph-builder <https://github.com/One-com/assetgraph-builder>`_.
+This will do a git checkout of nodejs in your home directory and build it, install npm, install required debian packages and install `assetgraph-builder <https://github.com/One-com/assetgraph-builder>`_.
+
+Please do read the content of `bootstrap.sh <webapp-skel/bootstrap.sh>`_ before running it.
 
 Keep your installation up to date with ``npm update`` after you've updated `package.json <webapp-skel/package.json>`_ with your desired assetgraph-builder version.
 
