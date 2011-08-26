@@ -1,7 +1,7 @@
 # Put all 'bin' dirs beneath node_modules into $PATH so that we're using
 # the locally installed AssetGraph:
 # Ugly 'subst' hack: Check the Make Manual section 8.1 - Function Call Syntax
-NPM_BINS:=$(subst bin node,bin:node,$(shell find node_modules/ -name bin -type d))
+NPM_BINS:=$(subst bin node,bin:node,$(shell find ~/.npm -name bin -type d))
 ifneq ($(NPM_BINS),)
 	PATH:=${NPM_BINS}:${PATH}
 endif
