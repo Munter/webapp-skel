@@ -15,7 +15,8 @@ make
 make install
 
 # Install NPM
-curl http://npmjs.org/install.sh | sh
+wget http://npmjs.org/install.sh -O npm-install.sh
+sudo sh npm-install.sh
 
 # Set up path for locally installed node modules
 export PATH=~/.local/bin:${PATH}
@@ -23,4 +24,4 @@ export PATH=~/.local/bin:${PATH}
 # echo "export PATH=~/.local/bin:$PATH" >> ~/.bashrc
 
 # Install assetgraph-builder
-npm install -g assetgraph-builder
+sudo npm install -g assetgraph-builder
