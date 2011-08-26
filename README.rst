@@ -36,6 +36,10 @@ This is where external dependencies, like javascript or css frameworks, or your 
 Per default Ext JS is checked in so you have a reference.
 When you set up any new external library and you want to include things from it using labels in assetgraph, remember to define a label in ``LABELS`` in `Makefile <webapp-skel/Makefile>`_
 
+If you want to get ExtJS in http-pub/3rdparty/ExtJS, simply run these commands in your webapp-skel top directory:
+	git submodule init
+	git submodule update
+
 http-pub-production
 -------------------
 This is where the minified production build of your web application will be placed.
