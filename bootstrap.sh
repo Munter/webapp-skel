@@ -14,13 +14,13 @@ mkdir ~/.local # If it doesn't already exist
 make
 make install
 
-# Install NPM
-curl http://npmjs.org/install.sh | sh
-
 # Set up path for locally installed node modules
 export PATH=~/.local/bin:${PATH}
 # Optionally
 # echo "export PATH=~/.local/bin:$PATH" >> ~/.bashrc
+
+# Install NPM
+curl http://npmjs.org/install.sh | sh
 
 # Install assetgraph-builder
 npm install -g assetgraph-builder
