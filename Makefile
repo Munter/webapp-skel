@@ -1,11 +1,10 @@
 # Put all 'bin' dirs beneath node_modules into $PATH so that we're using
 # the locally installed AssetGraph:
 # Ugly 'subst' hack: Check the Make Manual section 8.1 - Function Call Syntax
-# Remove comments if you want this.
-# NPM_BINS := $(subst bin node,bin:node,$(shell find node_modules/ -name bin -type d))
-# ifneq ($(NPM_BINS),)
-#	PATH := ${NPM_BINS}:${PATH}
-# endif
+NPM_BINS := $(subst bin node,bin:node,$(shell if test -d node_modules; then find node_modules/ -name bin -type d; fi))
+ifneq ($(NPM_BINS),)
+	PATH := ${NPM_BINS}:${PATH}
+endif
 
 PAGES = http-pub/index.html
 CDN_ROOT = http://cdn.mydomain.com/static/
