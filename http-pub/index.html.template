@@ -30,6 +30,6 @@
             Ext.BLANK_IMAGE_URL = one.getStaticUrl('3rdparty/ExtJS/resources/themes/images/access/tree/s.gif');
         </script>
       
-        <!--<script src="js/YourApp/app.js"></script>-->
+       <script src="js/MyApp/app.js"></script>
     </body>
 </html>
