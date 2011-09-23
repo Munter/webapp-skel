@@ -2,7 +2,7 @@
     "name": "MyProject",
     "version": "0.0.1",
     "dependencies": {
-        "assetgraph-builder": "0.1.5"
+        "assetgraph-builder": "0.2.1"
     },
     "engines": {
         "node": "~0.4.10"
