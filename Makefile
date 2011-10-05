@@ -13,6 +13,7 @@ LABELS = \
 	--label Ext:extJs4Dir=http-pub/3rdparty/ExtJS/src \
 	--label extsdk=http-pub/3rdparty/ExtJS/build/sdk.jsb3
 
+default: production
 .PHONY: development clean
 development: ${PAGES}
 production: http-pub-production
