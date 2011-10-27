@@ -23,6 +23,7 @@ http-pub/%.html: http-pub/%.html.template $(shell find http-pub -name '*.js' -o 
 	buildDevelopment \
 		--cssimports \
 		--root=http-pub \
+		--version `git describe --long --tags --always 2>/dev/null || echo unknown` \
 		${LABELS} \
 		$<
 
