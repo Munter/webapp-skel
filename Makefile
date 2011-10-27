@@ -1,3 +1,5 @@
+DEV_JS_CSS_I18N_SOURCES = $(shell find ./http-pub -name "*.js" -o -name "*.css" -o -name "*.i18n")
+
 # Put all 'bin' dirs beneath node_modules into $PATH so that we're using
 # the locally installed AssetGraph:
 # Ugly 'subst' hack: Check the Make Manual section 8.1 - Function Call Syntax
@@ -6,9 +8,9 @@ ifneq ($(NPM_BINS),)
 	PATH := ${NPM_BINS}:${PATH}
 endif
 
-PAGES = http-pub/index.html
-CDN_ROOT = http://cdn.mydomain.com/static/
-TARGET_LOCALES=en_US
+DEVELOPMENT_TARGETS = http-pub/index.html
+CDNROOT ?= http://cdn.mydomain.com/
+TARGET_LOCALES ?= en_US
 LABELS = \
 	--label Ext:extJs4Dir=http-pub/3rdparty/ExtJS/src \
 	--label extsdk=http-pub/3rdparty/ExtJS/build/sdk.jsb3
@@ -17,35 +19,38 @@ default: production
 .PHONY: development clean
 development: ${PAGES}
 production: http-pub-production
-cdn: http-pub-cdn
+cdn: http-pub-production-cdn
 
-http-pub/%.html: http-pub/%.html.template $(shell find http-pub -name '*.js' -o -name '*.css')
+http-pub/%.html: http-pub/%.html.template ${DEV_JS_CSS_I18N_SOURCES}
 	buildDevelopment \
 		--cssimports \
 		--root=http-pub \
 		${LABELS} \
 		$<
 
-http-pub-production: ${PAGES}
+http-pub-production: ${DEVELOPMENT_TARGETS}
 	-rm -fr $@
 	buildProduction \
-		--cssimports \
 		--root http-pub \
 		--outroot $@ \
 		--locale ${TARGET_LOCALES} \
 		${LABELS} \
-		${PAGES}
+		${DEVELOPMENT_TARGETS}
 
-http-pub-cdn: http-pub-production
+#
+# CDN-enabled production version where ${CDNROOT} should be proxied to the /static/cdn dir:
+#
+http-pub-production-cdn: ${DEVELOPMENT_TARGETS}
 	-rm -fr $@
-	prepareForCDN \
-		--root $< \
+	buildProduction \
+		--root http-pub \
 		--outroot $@ \
-		--cdnroot ${CDN_ROOT} \
-		$</*.html
+		--cdnroot ${CDNROOT} \
+		--cdnoutroot $@/static/cdn \
+		--locale ${TARGET_LOCALES} \
+		${LABELS} \
+		${DEVELOPMENT_TARGETS}
 
 clean:
 	-rm -f http-pub/index.html
-	-rm -fr http-pub-production
-	-rm -fr http-pub-cdn
-	-rm -fr doc doc-html
+	-rm -fr http-pub-production http-pub-production-cdn doc doc-html
