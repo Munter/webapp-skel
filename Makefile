@@ -17,7 +17,7 @@ LABELS = \
 
 default: production
 .PHONY: development clean
-development: ${PAGES}
+development: ${DEVELOPMENT_TARGET}
 production: http-pub-production
 cdn: http-pub-production-cdn
 
