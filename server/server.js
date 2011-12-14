@@ -37,6 +37,7 @@ function createServer (environment) {
     if (environment === 'development') {
         app.use(express['static'](__dirname + '/../http-pub'));
         app.use(express.errorHandler({dumpExceptions: true, showStack: true}));
+        require('assetgraph-builder/lib/installLiveCssFileWatcherInServer')(app, publicDir, require('socket.io'));
     }
 
     // Listen if invoked directly using the node executable:

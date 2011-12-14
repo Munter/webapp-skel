@@ -23,6 +23,7 @@ cdn: http-pub-production-cdn
 
 http-pub/%.html: http-pub/%.html.template ${DEV_JS_CSS_I18N_SOURCES}
 	buildDevelopment \
+		--livecss \
 		--cssimports \
 		--root=http-pub \
 		--version `git describe --long --tags --always 2>/dev/null || echo unknown` \
