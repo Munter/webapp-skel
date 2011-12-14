@@ -1,7 +1,7 @@
 /*jslint nomen:false, regexp:true*/
 /*global module, require, __dirname, console, process*/
 var express = require('express'),
-    sys = require('util'),
+    util = require('util'),
     fs = require('fs'),
     error = require('./modules/error');
     
@@ -35,9 +35,10 @@ function createServer (environment) {
     }
 
     if (environment === 'development') {
-        app.use(express['static'](__dirname + '/../http-pub'));
+        var dir = __dirname + '/../http-pub';
+        app.use(express['static'](dir));
         app.use(express.errorHandler({dumpExceptions: true, showStack: true}));
-        require('assetgraph-builder/lib/installLiveCssFileWatcherInServer')(app, publicDir, require('socket.io'));
+        require('assetgraph-builder/lib/installLiveCssFileWatcherInServer')(app, dir, require('socket.io'));
     }
 
     // Listen if invoked directly using the node executable:
@@ -48,6 +49,6 @@ createServer('development').listen(3000);
 createServer('production').listen(3001);
 
 process.on('uncaughtException', function (e) {
-    sys.error(e.stack);
+    util.error(e.stack);
 });
 
