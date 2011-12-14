@@ -1,9 +1,8 @@
 /*jslint nomen:false, regexp:true*/
 /*global module, require, __dirname, console, process*/
 var express = require('express'),
-    sys = require('sys'),
+    sys = require('util'),
     fs = require('fs'),
-    _ = require('underscore'),
     error = require('./modules/error');
     
     
