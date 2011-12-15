@@ -3,6 +3,7 @@
 var express = require('express'),
     util = require('util'),
     fs = require('fs'),
+    path = require('path'),
     error = require('./modules/error');
     
     
@@ -35,7 +36,7 @@ function createServer (environment) {
     }
 
     if (environment === 'development') {
-        var dir = __dirname + '/../http-pub';
+        var dir = path.resolve(__dirname, '../http-pub');
         app.use(express['static'](dir));
         app.use(express.errorHandler({dumpExceptions: true, showStack: true}));
         require('assetgraph-builder/lib/installLiveCssFileWatcherInServer')(app, dir, require('socket.io'));
