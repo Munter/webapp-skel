@@ -2,7 +2,7 @@
     "name": "MyProject",
     "version": "0.0.1",
     "dependencies": {
-        "assetgraph-builder": "0.2.33",
+        "assetgraph-builder": "0.2.34",
         "express": ">0.0.1",
         "socket.io": "=0.8.5",
         "socket.io-client": "=0.8.5",
